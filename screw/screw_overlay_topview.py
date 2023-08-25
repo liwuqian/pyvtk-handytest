@@ -1,4 +1,5 @@
 # using coincident pology technique to render actor to top view
+# while the screw is transparent, the top view is not effect
 import vtkmodules.all as vtk
 
 # Create a renderer
@@ -25,29 +26,47 @@ mapper_1.SetRelativeCoincidentTopologyLineOffsetParameters(0, units)
 mapper_1.SetRelativeCoincidentTopologyPolygonOffsetParameters(0, units)
 mapper_1.SetRelativeCoincidentTopologyPointOffsetParameter(units)
 # disble coincident topoly
-mapper_1.SetResolveCoincidentTopologyToOff() 
+# mapper_1.SetResolveCoincidentTopologyToOff() 
 
 mapper_2 = vtk.vtkPolyDataMapper()
 mapper_2.SetInputConnection(stl_reader.GetOutputPort())
+# oldfactor = 0.0
+# oldunits = 0.0
+# print('old factor')
+# mapper_2.GetCoincidentTopologyPointOffsetParameter(units)
+# mapper_2.GetRelativeCoincidentTopologyLineOffsetParameters(oldfactor, oldunits)
+# print(oldfactor, oldunits)
+# mapper_2.GetRelativeCoincidentTopologyPolygonOffsetParameters(oldfactor, oldunits)
+# print(oldfactor, oldunits)
+# mapper_2.GetRelativeCoincidentTopologyPointOffsetParameter(oldunits)
+# print(oldunits)
 mapper_2.SetResolveCoincidentTopologyToPolygonOffset()
 mapper_2.SetRelativeCoincidentTopologyLineOffsetParameters(0, units)
 mapper_2.SetRelativeCoincidentTopologyPolygonOffsetParameters(0, units)
 mapper_2.SetRelativeCoincidentTopologyPointOffsetParameter(units)
+# disable
 # mapper_2.SetResolveCoincidentTopologyToOff()
+# mapper_2.SetResolveCoincidentTopologyToDefault()
+# set off or default, do not disable the feature, so set the value to 0 to disable it
+# but the actor opacity must be 1
+# mapper_2.SetRelativeCoincidentTopologyLineOffsetParameters(0, 0)
+# mapper_2.SetRelativeCoincidentTopologyPolygonOffsetParameters(0, 0)
+# mapper_2.SetRelativeCoincidentTopologyPointOffsetParameter(0)
+
 
 # Create an actor 1
 actor_1 = vtk.vtkActor()
 actor_1.SetMapper(mapper_1)
 actor_1.GetProperty().SetColor(0.5, 0.8, 0)
-# actor_1.GetProperty().SetOpacity(0.9)
+actor_1.GetProperty().SetOpacity(0.5)
 actor_1.GetProperty().LightingOff()
 # actor_1.RotateZ(30)
 actor_1.SetPosition(1,5,0)
 
 actor_2 = vtk.vtkActor()
 actor_2.SetMapper(mapper_2)
-actor_2.GetProperty().SetColor(0.0, 0.8, 0.5)
-# actor_2.GetProperty().SetOpacity(0.9)
+actor_2.GetProperty().SetColor(0.0, 0.6, 0.6)
+actor_2.GetProperty().SetOpacity(0.5)
 actor_2.GetProperty().LightingOff()
 
 cone = vtk.vtkConeSource()
