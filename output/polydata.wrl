@@ -1,0 +1,70 @@
+#VRML V2.0 utf8
+# VRML file written by the visualization toolkit
+
+    Background {
+    skyColor [0.000000 0.000000 0.000000, ]
+    }
+     Viewpoint
+      {
+      fieldOfView 0.523599
+      position 0.000000 0.000000 1.000000
+      description "Default View"
+      orientation 0 0 1 0
+      }
+    NavigationInfo {
+      type ["EXAMINE","FLY"]
+      speed 4.000000
+      headlight TRUE}
+
+    DirectionalLight { ambientIntensity 1 intensity 0 # ambient light
+      color 1.000000 1.000000 1.000000 }
+
+    Transform {
+      translation 0 0 0
+      rotation 0 0 1 0
+      scale 1 1 1
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              ambientIntensity 0
+              diffuseColor 1 1 1
+              specularColor 0 0 0
+              shininess 0.0078125
+              transparency 0
+              }
+            }
+          geometry IndexedFaceSet {
+            solid FALSE
+            coord DEF VTKcoordinates Coordinate {
+              point [
+              1.5 0 0,
+              -1.5 1 0,
+              -1.5 0.80901700258255005 0.58778524398803711,
+              -1.5 0.30901700258255005 0.95105654001235962,
+              -1.5 -0.30901700258255005 0.95105654001235962,
+              -1.5 -0.80901700258255005 0.58778524398803711,
+              -1.5 -1 1.2246468525851679e-16,
+              -1.5 -0.80901700258255005 -0.58778524398803711,
+              -1.5 -0.30901700258255005 -0.95105654001235962,
+              -1.5 0.30901700258255005 -0.95105654001235962,
+              -1.5 0.80901700258255005 -0.58778524398803711,
+              ]
+            }
+            coordIndex  [
+              10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -1,
+              0, 1, 2, -1,
+              0, 2, 3, -1,
+              0, 3, 4, -1,
+              0, 4, 5, -1,
+              0, 5, 6, -1,
+              0, 6, 7, -1,
+              0, 7, 8, -1,
+              0, 8, 9, -1,
+              0, 9, 10, -1,
+              0, 10, 1, -1,
+            ]
+          }
+        }
+      ]
+    }
