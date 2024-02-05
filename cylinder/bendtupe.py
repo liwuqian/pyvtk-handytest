@@ -55,12 +55,17 @@ def create_bent_tube2():
     # Create points along the tube's path
     points = vtk.vtkPoints()
     num_points = 6
-    points.InsertNextPoint(1, 0, 0)
+    # points.InsertNextPoint(1, 0, 0)
+    # points.InsertNextPoint(2, 0, 0)
+    # points.InsertNextPoint(3, 1, 0)
+    # points.InsertNextPoint(4, 1, 0)
+    # points.InsertNextPoint(5, 0, 0)
+    # points.InsertNextPoint(6, 0, 0)
+
     points.InsertNextPoint(2, 0, 0)
-    points.InsertNextPoint(3, 1, 0)
-    points.InsertNextPoint(4, 1, 0)
-    points.InsertNextPoint(5, 0, 0)
-    points.InsertNextPoint(6, 0, 0)
+    points.InsertNextPoint(3, 5, 0)
+    points.InsertNextPoint(2, 10, 0)
+    points.InsertNextPoint(3, 19, 0)
 
     # Fit a spile to the points
     spline = vtk.vtkParametricSpline()
@@ -105,15 +110,17 @@ def create_bent_tube2():
         tubePolydata.GetPointData().SetActiveScalars("TubeRadius")
 
     # Create a tube filter to create the bent tube
+    radius = 0.5
     tube_filter = vtk.vtkTubeFilter()
     tube_filter.SetInputData(tubePolydata)
-    tube_filter.SetRadius(0.1)  # Set the radius of the tube
+    tube_filter.SetRadius(radius)  # Set the radius of the tube
     tube_filter.SetNumberOfSides(50)  # Set the number of sides for the tube
+    tube_filter.CappingOn()
     tube_filter.SetVaryRadiusToVaryRadiusByAbsoluteScalar()
 
     # Create a capped cylinder source for the tube's ends
     tube_end_caps = vtk.vtkCylinderSource()
-    tube_end_caps.SetRadius(0.1)  # Set the radius to match the tube
+    tube_end_caps.SetRadius(radius)  # Set the radius to match the tube
     tube_end_caps.SetCenter(0, 0, 0)  # Set the center of the caps (tube's starting point)
     tube_end_caps.SetHeight(0.001)  # Set the height of the caps (small thickness)
     tube_end_caps.SetResolution(20)  # Set the resolution of the caps

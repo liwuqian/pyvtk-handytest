@@ -1,4 +1,4 @@
-import vtk
+import vtkmodules.all as vtk
 
 # Create a cylinder
 cylinder = vtk.vtkCylinderSource()
